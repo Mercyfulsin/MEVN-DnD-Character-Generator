@@ -27,7 +27,8 @@ router.post('/', async (req, res) => {
 
 router.delete('/', async (req, res) => {
     try {
-        const del = Character.deleteOne({_id: req.body._id},function(err, result) {
+        Character.deleteOne({_id: req.body._id},function(err, result) {
+            console.log("Result: ", result);
             !err ? res.status(201).json(result) :  res.status(400).json({ DeleteMessage: err.message });
         });
     } catch (err) {
