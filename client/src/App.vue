@@ -20,8 +20,7 @@
 
 <script>
 import axios from "axios";
-import CharacterDisplay from "@/components";
-import CharacterGenerator from "@/components";
+import { CharacterDisplay, CharacterGenerator } from "@/components";
 
 
 export default {
