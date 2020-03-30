@@ -9,15 +9,20 @@
     <button v-on:click="toggle='character-generator'">Create a character</button>
     <!-- Conditional, depending on toggle value, 'show' different components -->
     <!-- CharacterDisplay: Pass it the characters variable as a prop and listen for a 'reload' event where you then call getCharacters function -->
-    <CharacterDisplay v-show="toggle==='character-display'" :characters="characters" @reload="getCharacters" />
+    <CharacterDisplay
+      v-show="toggle==='character-display'"
+      :characters="characters"
+      @reload="getCharacters"
+    />
     <CharacterGenerator v-show="toggle==='character-generator'" />
   </div>
 </template>
 
 <script>
-import axios from 'axios';
-import CharacterDisplay from "./components/CharacterDisplay.vue";
-import CharacterGenerator from "./components/CharaterGenerator.vue";
+import axios from "axios";
+import CharacterDisplay from "@/components";
+import CharacterGenerator from "@/components";
+
 
 export default {
   name: "App",
@@ -29,7 +34,7 @@ export default {
     return {
       toggle: "character-viewer",
       characters: null
-    }
+    };
   },
   methods: {
     getCharacters: function() {
@@ -45,12 +50,21 @@ export default {
 </script>
 
 <style>
+@import "./assets/stylesheet.css";
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #5c97d1;
   margin-top: 60px;
+  border-style: double;
+  border-width: 5px;
+  border-color: black;
+}
+html {
+  background-color: rgba(241, 86, 14, 0.822);
+  font-family: "Atari Classic";
+  font-weight: normal;
+  font-style: normal;
 }
 </style>

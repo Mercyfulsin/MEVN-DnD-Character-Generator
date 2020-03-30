@@ -20,28 +20,26 @@
       <option value="Warlock">Warlock</option>
       <option value="Wizard">Wizard</option>
     </select>
-    <h4>Name:</h4> <p>{{name}}</p>
-    <h4>Class:</h4> <p>{{job}}</p>
+    <h4>Name:</h4>
+    <p>{{name}}</p>
+    <h4>Class:</h4>
+    <p>{{job}}</p>
     <div id="stats" v-if="display">
-      <h4>HP:</h4> <p>{{information.hit_die}} + Con Mod</p>
-      <h4>Saving Throws:</h4>
-      <p v-for="(throws,index) in information.saving_throws" :key="index">
-        {{throws.name}}
-        <br />
-      </p>
-      <h4
-        v-if="information.proficiency_choices[0]"
-      >Proficiency Choices (Pick {{information.proficiency_choices[0].choose}}):</h4>
-      <p v-for="(choices,index) in information.proficiency_choices[0].from" :key='index+6*5'>{{choices.name}}<br></p>
+      <StatView :information="information" />
+      <button v-on:click="postCharacter">Create Character</button>
     </div>
-    <button v-on:click="postCharacter">Create Character</button>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import StatView from "../StatView/StatView";
+
 export default {
   name: "CharacterGenerator",
+  components: {
+    StatView
+  },
   data: function() {
     return {
       display: false,
